@@ -1,7 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const ejs = require('ejs')
 const date = require(__dirname+"/date.js")
+require('dotenv').config()
+
+const url = process.env.ToDoList_Url
+mongoose.connect(url,{useNewUrlParser: true})
+const connection = mongoose.connection
+connection.once('open', ()=>{
+    console.log('connected successfully')
+})
+
 
 
 const app = express()
